@@ -14,5 +14,16 @@ namespace ConsoleAppOnlineShop
         {
             this.productData = productData;
         }
+
+        public double CalculationPriceList(ProductList productList)
+        {
+            double result = 0;
+            foreach (KeyValuePair<Product, double> item in productData)
+            {
+
+                result += item.Key.price * item.Value;
+            }
+            return result;
+        }
     }
 }
