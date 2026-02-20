@@ -27,7 +27,7 @@ namespace ConsoleAppOnlineShop
 
         public void AddProductCart(Product product)
         {
-            cartNow.AddProduct(product);
+            //cartNow.AddProduct(product);
         }
         public void AddCart(Cart cart)
         {
