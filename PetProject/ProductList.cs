@@ -25,5 +25,9 @@ namespace ConsoleAppOnlineShop
             }
             return result;
         }
+        public void RemoveProductQuantity(Product product)
+        {
+            productData[product] -= 1;
+        }
     }
 }

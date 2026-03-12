@@ -1,27 +1,29 @@
 using ConsoleAppOnlineShop;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SupermarketWinFormsApp1
 {
     public partial class Form1 : Form
     {
-        Dictionary<Product, double> productData; //product+ price
-        Dictionary<string, Product> productList; // title + product
+        Dictionary<Product, double> productData; //product+ quantity
+        Dictionary<string, Product> searchObject; // title + product
+        ProductList productList;
 
         public Form1(Dictionary<Product, double> productData)
         {
             InitializeComponent();
             this.productData = productData;
             //listBox1.Items.Add(productData.Keys.ToArray()[0].title);
-            this.productList = new Dictionary<string, Product>();
+            this.searchObject = new Dictionary<string, Product>();
             foreach (Product item in productData.Keys)
             {
-                productList.Add(item.title, item);
-                listBox2.Items.Add(item.title);
+                searchObject.Add(item.title, item);
+                listOfProducts.Items.Add(item.title);
             }
             Random random = new Random();
-            listBox2.SelectedItem = productList.Keys.ToArray()[random.Next( 0, productList.Keys.Count)];
+            listOfProducts.SelectedItem = searchObject.Keys.ToArray()[random.Next(0, searchObject.Keys.Count)];
         }
 
 
@@ -34,7 +36,10 @@ namespace SupermarketWinFormsApp1
 
             Client client = new Client("Prague", "Hlavni", "227", new DateOnly(1991, 5, 15), "Jan", "Buchta", "09cjfen", null, null, "997432");
             Cart cart = new Cart(DateTime.Now, new TimeSpan(0, 12, 6, 76), client, "");
-            //cart.AddProduct(productData., 1);
+            cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], 1);
+            productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()]);
+            
+
         }
 
 
@@ -62,14 +67,24 @@ namespace SupermarketWinFormsApp1
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (listBox2.SelectedItem != null)
+            if (listOfProducts.SelectedItem != null)
             {
-                string selectedValue= listBox2.SelectedItem.ToString();
-                textBox6.Text = productList[selectedValue].title;
-                richTextBox1.Text = productList[selectedValue].description;
-                textBox2.Text = productList[selectedValue].price.ToString();
-               // MessageBox.Show($"You selected: {selectedValue}");
+                string selectedValue = listOfProducts.SelectedItem.ToString();
+                textBox6.Text = searchObject[selectedValue].title;
+                richTextBox1.Text = searchObject[selectedValue].description;
+                textBox2.Text = searchObject[selectedValue].price.ToString();
+                // MessageBox.Show($"You selected: {selectedValue}");
             }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

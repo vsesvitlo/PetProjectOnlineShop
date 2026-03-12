@@ -41,9 +41,10 @@
             label4 = new Label();
             textBox5 = new TextBox();
             button2 = new Button();
-            listBox2 = new ListBox();
+            listOfProducts = new ListBox();
             textBox6 = new TextBox();
             richTextBox1 = new RichTextBox();
+            FinalCart = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             button1.Name = "button1";
             button1.Size = new Size(91, 34);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Buy";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -159,15 +160,15 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // listBox2
+            // listOfProducts
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 25;
-            listBox2.Location = new Point(12, 34);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(180, 379);
-            listBox2.TabIndex = 17;
-            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
+            listOfProducts.FormattingEnabled = true;
+            listOfProducts.ItemHeight = 25;
+            listOfProducts.Location = new Point(12, 34);
+            listOfProducts.Name = "listOfProducts";
+            listOfProducts.Size = new Size(180, 379);
+            listOfProducts.TabIndex = 17;
+            listOfProducts.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // textBox6
             // 
@@ -183,15 +184,27 @@
             richTextBox1.Size = new Size(153, 84);
             richTextBox1.TabIndex = 19;
             richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
+            // 
+            // FinalCart
+            // 
+            FinalCart.FormattingEnabled = true;
+            FinalCart.ItemHeight = 25;
+            FinalCart.Location = new Point(859, 23);
+            FinalCart.Name = "FinalCart";
+            FinalCart.Size = new Size(180, 379);
+            FinalCart.TabIndex = 20;
+            FinalCart.SelectedIndexChanged += Cart_SelectedIndexChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1063, 450);
+            Controls.Add(FinalCart);
             Controls.Add(richTextBox1);
             Controls.Add(textBox6);
-            Controls.Add(listBox2);
+            Controls.Add(listOfProducts);
             Controls.Add(button2);
             Controls.Add(label4);
             Controls.Add(textBox5);
@@ -227,8 +240,9 @@
         private Label label4;
         private TextBox textBox5;
         private Button button2;
-        private ListBox listBox2;
+        private ListBox listOfProducts;
         private TextBox textBox6;
         private RichTextBox richTextBox1;
+        private ListBox FinalCart;
     }
 }
