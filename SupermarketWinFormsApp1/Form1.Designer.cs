@@ -190,7 +190,7 @@
             // 
             FinalCart.FormattingEnabled = true;
             FinalCart.ItemHeight = 25;
-            FinalCart.Location = new Point(859, 23);
+            FinalCart.Location = new Point(814, 34);
             FinalCart.Name = "FinalCart";
             FinalCart.Size = new Size(180, 379);
             FinalCart.TabIndex = 20;

@@ -15,6 +15,7 @@ namespace SupermarketWinFormsApp1
         {
             InitializeComponent();
             this.productData = productData;
+            this.productList = new ProductList((productData));
             //listBox1.Items.Add(productData.Keys.ToArray()[0].title);
             this.searchObject = new Dictionary<string, Product>();
             foreach (Product item in productData.Keys)
@@ -34,11 +35,13 @@ namespace SupermarketWinFormsApp1
             // cart++
             //Product bread = new Product("00001", "Fresh Bread", "Nice bread...", 77);
 
-            Client client = new Client("Prague", "Hlavni", "227", new DateOnly(1991, 5, 15), "Jan", "Buchta", "09cjfen", null, null, "997432");
+            Client client = new Client("Prague", "Hlavni", "227", new DateOnly(1991, 5, 15), "Jan", "B", "09cjfen", null, null, "997432");
             Cart cart = new Cart(DateTime.Now, new TimeSpan(0, 12, 6, 76), client, "");
             cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], 1);
-            productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()]);
-            
+            //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
+            //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
+            productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], 1);
+            MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
 
         }
 
