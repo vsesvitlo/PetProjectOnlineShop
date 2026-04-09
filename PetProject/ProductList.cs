@@ -25,9 +25,9 @@ namespace ConsoleAppOnlineShop
             }
             return result;
         }
-        public void RemoveProductQuantity(Product product, int a)
+        public void RemoveProductQuantity(Product product, int quantity)
         {
-            productData[product] -= 1;
+            productData[product] -= quantity;
         }
         //add method scheme
         public double ShowQuantity(Product product)

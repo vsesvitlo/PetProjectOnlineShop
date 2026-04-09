@@ -10,6 +10,7 @@ namespace SupermarketWinFormsApp1
         Dictionary<Product, double> productData; //product+ quantity
         Dictionary<string, Product> searchObject; // title + product
         ProductList productList;
+        int quantity;
 
         public Form1(Dictionary<Product, double> productData)
         {
@@ -18,6 +19,7 @@ namespace SupermarketWinFormsApp1
             this.productList = new ProductList((productData));
             //listBox1.Items.Add(productData.Keys.ToArray()[0].title);
             this.searchObject = new Dictionary<string, Product>();
+            quantity = 1;
             foreach (Product item in productData.Keys)
             {
                 searchObject.Add(item.title, item);
@@ -37,35 +39,16 @@ namespace SupermarketWinFormsApp1
 
             Client client = new Client("Prague", "Hlavni", "227", new DateOnly(1991, 5, 15), "Jan", "B", "09cjfen", null, null, "997432");
             Cart cart = new Cart(DateTime.Now, new TimeSpan(0, 12, 6, 76), client, "");
-            cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], 1);
+            cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
+            FinalCart.Items.Add(listOfProducts.SelectedItem.ToString());
             //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
             //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
-            productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], 1);
+            productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
             MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
 
         }
 
 
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(text: $"Hello {textBox1.Text}");
-        }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -88,6 +71,29 @@ namespace SupermarketWinFormsApp1
         private void Cart_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // +
+            quantity += 1;
+            textBox7.Text = quantity.ToString();
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            textBox7.Text = quantity.ToString();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //-
+          
+            if (quantity > 0)
+            {
+                quantity -= 1;
+                textBox7.Text = quantity.ToString();
+            }
         }
     }
 }
