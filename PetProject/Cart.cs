@@ -27,7 +27,13 @@ namespace ConsoleAppOnlineShop
 
         public void AddProduct(Product product, double quantity)
         {
-            order.Add(product, 1);
+            if (this.order.ContainsKey(product))
+            {
+                this.order[product] += quantity;
+            }
+            else {
+                order.Add(product, quantity);
+            }
         }
 
         public double CalculationSum()

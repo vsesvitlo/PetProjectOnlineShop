@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new Button();
             pictureBox1 = new PictureBox();
             textBox2 = new TextBox();
@@ -38,7 +39,16 @@
             textBox7 = new TextBox();
             button3 = new Button();
             button4 = new Button();
+            dataGridView1 = new DataGridView();
+            Product = new DataGridViewTextBoxColumn();
+            Quantities = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            cartBindingSource = new BindingSource(components);
+            textBox1 = new TextBox();
+            textBox3 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cartBindingSource).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -101,9 +111,9 @@
             // 
             FinalCart.FormattingEnabled = true;
             FinalCart.ItemHeight = 25;
-            FinalCart.Location = new Point(507, 34);
+            FinalCart.Location = new Point(198, 334);
             FinalCart.Name = "FinalCart";
-            FinalCart.Size = new Size(487, 379);
+            FinalCart.Size = new Size(245, 104);
             FinalCart.TabIndex = 20;
             FinalCart.SelectedIndexChanged += Cart_SelectedIndexChanged;
             // 
@@ -138,11 +148,72 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Quantities, Price });
+            dataGridView1.Location = new Point(478, 42);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(564, 262);
+            dataGridView1.TabIndex = 24;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // Product
+            // 
+            Product.HeaderText = "Product";
+            Product.MinimumWidth = 8;
+            Product.Name = "Product";
+            Product.Width = 150;
+            // 
+            // Quantities
+            // 
+            Quantities.HeaderText = "Quantity";
+            Quantities.MinimumWidth = 8;
+            Quantities.Name = "Quantities";
+            Quantities.Width = 150;
+            // 
+            // Price
+            // 
+            Price.HeaderText = "Price";
+            Price.MinimumWidth = 8;
+            Price.Name = "Price";
+            Price.Width = 150;
+            // 
+            // cartBindingSource
+            // 
+            cartBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Cart);
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(478, 307);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(306, 31);
+            textBox1.TabIndex = 25;
+            textBox1.Text = "Total: ";
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(882, 307);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(160, 31);
+            textBox3.TabIndex = 26;
+            textBox3.Text = "0 czk";
+            textBox3.TextChanged += textBox3_TextChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1063, 450);
+            Controls.Add(textBox3);
+            Controls.Add(textBox1);
+            Controls.Add(dataGridView1);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(textBox7);
@@ -156,6 +227,8 @@
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cartBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -172,5 +245,12 @@
         private TextBox textBox7;
         private Button button3;
         private Button button4;
+        private DataGridView dataGridView1;
+        private BindingSource cartBindingSource;
+        private DataGridViewTextBoxColumn Product;
+        private DataGridViewTextBoxColumn Quantities;
+        private DataGridViewTextBoxColumn Price;
+        private TextBox textBox1;
+        private TextBox textBox3;
     }
 }

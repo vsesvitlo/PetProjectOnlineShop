@@ -11,7 +11,9 @@ namespace SupermarketWinFormsApp1
         Dictionary<string, Product> searchObject; // title + product
         ProductList productList;
         int quantity;
-
+        Client client;
+        Cart cart;
+       
         public Form1(Dictionary<Product, double> productData)
         {
             InitializeComponent();
@@ -20,6 +22,8 @@ namespace SupermarketWinFormsApp1
             //listBox1.Items.Add(productData.Keys.ToArray()[0].title);
             this.searchObject = new Dictionary<string, Product>();
             quantity = 1;
+            client = new Client("Prague", "Hlavni", "227", new DateOnly(1991, 5, 15), "Jan", "B", "09cjfen", null, null, "997432");
+            cart = new Cart(DateTime.Now, new TimeSpan(0, 12, 6, 76), client, "");
             foreach (Product item in productData.Keys)
             {
                 searchObject.Add(item.title, item);
@@ -33,20 +37,15 @@ namespace SupermarketWinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //usersdatabase--
-            // cart++
-            //Product bread = new Product("00001", "Fresh Bread", "Nice bread...", 77);
-
-            Client client = new Client("Prague", "Hlavni", "227", new DateOnly(1991, 5, 15), "Jan", "B", "09cjfen", null, null, "997432");
-            Cart cart = new Cart(DateTime.Now, new TimeSpan(0, 12, 6, 76), client, "");
             cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
             FinalCart.Items.Add(listOfProducts.SelectedItem.ToString());
             //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
             //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
             productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
             MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
-
-        }
+            dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price);
+            textBox3.Text = cart.CalculationSum().ToString();
+    }
 
 
 
@@ -88,12 +87,27 @@ namespace SupermarketWinFormsApp1
         private void button4_Click(object sender, EventArgs e)
         {
             //-
-          
+
             if (quantity > 0)
             {
                 quantity -= 1;
                 textBox7.Text = quantity.ToString();
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
