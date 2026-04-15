@@ -43,7 +43,7 @@ namespace SupermarketWinFormsApp1
             //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
             productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
             MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
-            dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price);
+            dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
             textBox3.Text = cart.CalculationSum().ToString();
     }
 
