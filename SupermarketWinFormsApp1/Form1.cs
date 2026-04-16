@@ -13,7 +13,7 @@ namespace SupermarketWinFormsApp1
         int quantity;
         Client client;
         Cart cart;
-       
+
         public Form1(Dictionary<Product, double> productData)
         {
             InitializeComponent();
@@ -31,6 +31,7 @@ namespace SupermarketWinFormsApp1
             }
             Random random = new Random();
             listOfProducts.SelectedItem = searchObject.Keys.ToArray()[random.Next(0, searchObject.Keys.Count)];
+            listOfProducts.SelectedValueChanged += ChangeItem;
         }
 
 
@@ -45,7 +46,20 @@ namespace SupermarketWinFormsApp1
             MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
             dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
             textBox3.Text = cart.CalculationSum().ToString();
-    }
+            
+            foreach(DataGridViewRow item in dataGridView1.Rows)
+            {
+               
+              if (item.Cells[0].Value == listOfProducts.SelectedItem)
+                {
+                    double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString());
+                    item.Cells[1].Value = allQuantity;
+                }
+                MessageBox.Show(item.Cells[0].Value.ToString());
+            }
+            
+            
+        }
 
 
 
@@ -58,8 +72,14 @@ namespace SupermarketWinFormsApp1
                 textBox6.Text = searchObject[selectedValue].title;
                 richTextBox1.Text = searchObject[selectedValue].description;
                 textBox2.Text = searchObject[selectedValue].price.ToString();
-                // MessageBox.Show($"You selected: {selectedValue}");
+                //MessageBox.Show($"You selected: {selectedValue}");
             }
+            
+        }
+        public void ChangeItem(object sender, EventArgs e)
+        {
+            quantity = 1;
+            label1.Text = quantity.ToString();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -76,12 +96,7 @@ namespace SupermarketWinFormsApp1
         {
             // +
             quantity += 1;
-            textBox7.Text = quantity.ToString();
-        }
-
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-            textBox7.Text = quantity.ToString();
+            label1.Text = quantity.ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -91,7 +106,7 @@ namespace SupermarketWinFormsApp1
             if (quantity > 0)
             {
                 quantity -= 1;
-                textBox7.Text = quantity.ToString();
+                label1.Text = quantity.ToString();
             }
         }
 
@@ -108,6 +123,16 @@ namespace SupermarketWinFormsApp1
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            label1.Text = quantity.ToString();
         }
     }
 }
