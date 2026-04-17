@@ -43,7 +43,7 @@ namespace SupermarketWinFormsApp1
             //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
             //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
             productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
-            MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
+            //MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
             dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
             textBox3.Text = cart.CalculationSum().ToString();
             
@@ -52,10 +52,11 @@ namespace SupermarketWinFormsApp1
                
               if (item.Cells[0].Value == listOfProducts.SelectedItem)
                 {
-                    double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString());
+                    double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString()) - 1;
                     item.Cells[1].Value = allQuantity;
+                    item.Cells[3].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
                 }
-                MessageBox.Show(item.Cells[0].Value.ToString());
+                //MessageBox.Show(item.Cells[0].Value.ToString());
             }
             
             
