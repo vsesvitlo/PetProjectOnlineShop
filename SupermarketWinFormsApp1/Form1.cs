@@ -44,23 +44,30 @@ namespace SupermarketWinFormsApp1
             //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
             productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
             //MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
+          
+            foreach (DataGridViewRow item in dataGridView1.Rows)
+            {
+               
+                if (item.Cells[0].Value == listOfProducts.SelectedItem)
+                {
+                    double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString());
+                    item.Cells[1].Value = allQuantity;
+                    item.Cells[3].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
+                   // ? dataGridView1.Rows.RemoveAt(0);
+                    //searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+                }
+                // else
+                // {
+               
+                // dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+                // textBox3.Text = cart.CalculationSum().ToString();
+                // }
+                //MessageBox.Show(item.Cells[0].Value.ToString());
+            }
             dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
             textBox3.Text = cart.CalculationSum().ToString();
             
-            foreach(DataGridViewRow item in dataGridView1.Rows)
-            {
-               
-              if (item.Cells[0].Value == listOfProducts.SelectedItem)
-                {
-                    double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString()) - 1;
-                    item.Cells[1].Value = allQuantity;
-                    item.Cells[3].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
-                }
-                //MessageBox.Show(item.Cells[0].Value.ToString());
-            }
-            
-            
-        }
+    }
 
 
 
