@@ -39,14 +39,17 @@
             button3 = new Button();
             button4 = new Button();
             dataGridView1 = new DataGridView();
-            Product = new DataGridViewTextBoxColumn();
-            Quantities = new DataGridViewTextBoxColumn();
-            PricePer1 = new DataGridViewTextBoxColumn();
-            Price = new DataGridViewTextBoxColumn();
             cartBindingSource = new BindingSource(components);
             textBox1 = new TextBox();
             textBox3 = new TextBox();
             label1 = new Label();
+            button2 = new Button();
+            Product = new DataGridViewTextBoxColumn();
+            Plus = new DataGridViewTextBoxColumn();
+            Quantities = new DataGridViewTextBoxColumn();
+            Minus = new DataGridViewTextBoxColumn();
+            PricePer1 = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cartBindingSource).BeginInit();
@@ -102,7 +105,7 @@
             richTextBox1.BorderStyle = BorderStyle.None;
             richTextBox1.Location = new Point(200, 179);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(243, 97);
+            richTextBox1.Size = new Size(327, 97);
             richTextBox1.TabIndex = 19;
             richTextBox1.Text = "Description";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -143,42 +146,16 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Quantities, PricePer1, Price });
-            dataGridView1.Location = new Point(608, 34);
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridView1.ColumnHeadersHeight = 54;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Plus, Quantities, Minus, PricePer1, Price });
+            dataGridView1.Location = new Point(583, 34);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(659, 262);
+            dataGridView1.RowHeadersWidth = 30;
+            dataGridView1.Size = new Size(821, 242);
             dataGridView1.TabIndex = 24;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // Product
-            // 
-            Product.HeaderText = "Product";
-            Product.MinimumWidth = 8;
-            Product.Name = "Product";
-            Product.Width = 150;
-            // 
-            // Quantities
-            // 
-            Quantities.HeaderText = "Quantity";
-            Quantities.MinimumWidth = 8;
-            Quantities.Name = "Quantities";
-            Quantities.Width = 150;
-            // 
-            // PricePer1
-            // 
-            PricePer1.HeaderText = "Price per 1 product";
-            PricePer1.MinimumWidth = 8;
-            PricePer1.Name = "PricePer1";
-            PricePer1.Width = 150;
-            // 
-            // Price
-            // 
-            Price.HeaderText = "Price";
-            Price.MinimumWidth = 8;
-            Price.Name = "Price";
-            Price.Width = 150;
             // 
             // cartBindingSource
             // 
@@ -216,11 +193,64 @@
             label1.Text = "1";
             label1.Click += label1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(1283, 73);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 28;
+            button2.Text = "Remove";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // Product
+            // 
+            Product.HeaderText = "Product";
+            Product.MinimumWidth = 8;
+            Product.Name = "Product";
+            Product.Width = 110;
+            // 
+            // Plus
+            // 
+            Plus.HeaderText = "+";
+            Plus.MinimumWidth = 8;
+            Plus.Name = "Plus";
+            Plus.Width = 60;
+            // 
+            // Quantities
+            // 
+            Quantities.HeaderText = "Quantity";
+            Quantities.MinimumWidth = 8;
+            Quantities.Name = "Quantities";
+            Quantities.Width = 116;
+            // 
+            // Minus
+            // 
+            Minus.HeaderText = "-";
+            Minus.MinimumWidth = 8;
+            Minus.Name = "Minus";
+            Minus.Width = 55;
+            // 
+            // PricePer1
+            // 
+            PricePer1.HeaderText = "Price per 1 product";
+            PricePer1.MinimumWidth = 8;
+            PricePer1.Name = "PricePer1";
+            PricePer1.Width = 199;
+            // 
+            // Price
+            // 
+            Price.HeaderText = "Price";
+            Price.MinimumWidth = 8;
+            Price.Name = "Price";
+            Price.Width = 85;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1373, 554);
+            ClientSize = new Size(1457, 554);
+            Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(textBox3);
             Controls.Add(textBox1);
@@ -259,10 +289,13 @@
         private BindingSource cartBindingSource;
         private TextBox textBox1;
         private TextBox textBox3;
+        private Label label1;
+        private Button button2;
         private DataGridViewTextBoxColumn Product;
+        private DataGridViewTextBoxColumn Plus;
         private DataGridViewTextBoxColumn Quantities;
+        private DataGridViewTextBoxColumn Minus;
         private DataGridViewTextBoxColumn PricePer1;
         private DataGridViewTextBoxColumn Price;
-        private Label label1;
     }
 }

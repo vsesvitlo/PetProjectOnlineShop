@@ -33,7 +33,7 @@ namespace SupermarketWinFormsApp1
             listOfProducts.SelectedItem = searchObject.Keys.ToArray()[random.Next(0, searchObject.Keys.Count)];
             listOfProducts.SelectedValueChanged += ChangeItem;
         }
-
+       
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,32 +44,27 @@ namespace SupermarketWinFormsApp1
             //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
             productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
             //MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
-          
+            bool check = false;
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {
-               
+
                 if (item.Cells[0].Value == listOfProducts.SelectedItem)
                 {
                     double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString());
-                    item.Cells[1].Value = allQuantity;
-                    item.Cells[3].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
-                   // ? dataGridView1.Rows.RemoveAt(0);
-                    //searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+                    item.Cells[2].Value = allQuantity;
+                    item.Cells[5].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
+                    check = true;
+                    textBox3.Text = cart.CalculationSum().ToString();
                 }
-                // else
-                // {
-               
-                // dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
-                // textBox3.Text = cart.CalculationSum().ToString();
-                // }
-                //MessageBox.Show(item.Cells[0].Value.ToString());
             }
-            dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, quantity, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
-            textBox3.Text = cart.CalculationSum().ToString();
-            
-    }
+            if (check == false)
+            {
+                dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title,"+", quantity,"-", searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+                textBox3.Text = cart.CalculationSum().ToString();
 
-
+            }
+         
+        }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -82,7 +77,7 @@ namespace SupermarketWinFormsApp1
                 textBox2.Text = searchObject[selectedValue].price.ToString();
                 //MessageBox.Show($"You selected: {selectedValue}");
             }
-            
+
         }
         public void ChangeItem(object sender, EventArgs e)
         {
@@ -141,6 +136,11 @@ namespace SupermarketWinFormsApp1
         private void label1_Click(object sender, EventArgs e)
         {
             label1.Text = quantity.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
