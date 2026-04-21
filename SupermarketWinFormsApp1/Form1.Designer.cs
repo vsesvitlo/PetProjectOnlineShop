@@ -50,6 +50,7 @@
             Minus = new DataGridViewTextBoxColumn();
             PricePer1 = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
+            Remove = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cartBindingSource).BeginInit();
@@ -149,7 +150,7 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dataGridView1.ColumnHeadersHeight = 54;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Plus, Quantities, Minus, PricePer1, Price });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Plus, Quantities, Minus, PricePer1, Price, Remove });
             dataGridView1.Location = new Point(583, 34);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 30;
@@ -195,7 +196,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(1283, 73);
+            button2.Location = new Point(1260, 139);
             button2.Name = "button2";
             button2.Size = new Size(112, 34);
             button2.TabIndex = 28;
@@ -244,6 +245,13 @@
             Price.MinimumWidth = 8;
             Price.Name = "Price";
             Price.Width = 85;
+            // 
+            // Remove
+            // 
+            Remove.HeaderText = "Remove";
+            Remove.MinimumWidth = 8;
+            Remove.Name = "Remove";
+            Remove.Width = 112;
             // 
             // Form1
             // 
@@ -297,5 +305,6 @@
         private DataGridViewTextBoxColumn Minus;
         private DataGridViewTextBoxColumn PricePer1;
         private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn Remove;
     }
 }

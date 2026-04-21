@@ -59,7 +59,7 @@ namespace SupermarketWinFormsApp1
             }
             if (check == false)
             {
-                dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title,"+", quantity,"-", searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+                dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, 0, quantity, 0, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity, button2_Click);
                 textBox3.Text = cart.CalculationSum().ToString();
 
             }
@@ -140,6 +140,8 @@ namespace SupermarketWinFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //dataGridView1.Rows.RemoveAt();
+                //(searchObject[listOfProducts.SelectedItem.ToString()].title, 0, quantity, 0, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
 
         }
     }
