@@ -43,14 +43,13 @@
             textBox1 = new TextBox();
             textBox3 = new TextBox();
             label1 = new Label();
-            button2 = new Button();
             Product = new DataGridViewTextBoxColumn();
-            Plus = new DataGridViewTextBoxColumn();
+            Plus = new DataGridViewButtonColumn();
             Quantities = new DataGridViewTextBoxColumn();
-            Minus = new DataGridViewTextBoxColumn();
+            Minus = new DataGridViewButtonColumn();
             PricePer1 = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
-            Remove = new DataGridViewTextBoxColumn();
+            Remove = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cartBindingSource).BeginInit();
@@ -147,10 +146,12 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dataGridView1.ColumnHeadersHeight = 54;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Plus, Quantities, Minus, PricePer1, Price, Remove });
+            dataGridView1.DataSource = cartBindingSource;
             dataGridView1.Location = new Point(583, 34);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 30;
@@ -161,6 +162,7 @@
             // cartBindingSource
             // 
             cartBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Cart);
+            cartBindingSource.CurrentChanged += cartBindingSource_CurrentChanged;
             // 
             // textBox1
             // 
@@ -194,16 +196,6 @@
             label1.Text = "1";
             label1.Click += label1_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(1260, 139);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 28;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // Product
             // 
             Product.HeaderText = "Product";
@@ -216,6 +208,7 @@
             Plus.HeaderText = "+";
             Plus.MinimumWidth = 8;
             Plus.Name = "Plus";
+            Plus.SortMode = DataGridViewColumnSortMode.Automatic;
             Plus.Width = 60;
             // 
             // Quantities
@@ -230,6 +223,7 @@
             Minus.HeaderText = "-";
             Minus.MinimumWidth = 8;
             Minus.Name = "Minus";
+            Minus.SortMode = DataGridViewColumnSortMode.Automatic;
             Minus.Width = 55;
             // 
             // PricePer1
@@ -251,6 +245,7 @@
             Remove.HeaderText = "Remove";
             Remove.MinimumWidth = 8;
             Remove.Name = "Remove";
+            Remove.SortMode = DataGridViewColumnSortMode.Automatic;
             Remove.Width = 112;
             // 
             // Form1
@@ -258,7 +253,6 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1457, 554);
-            Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(textBox3);
             Controls.Add(textBox1);
@@ -298,13 +292,12 @@
         private TextBox textBox1;
         private TextBox textBox3;
         private Label label1;
-        private Button button2;
         private DataGridViewTextBoxColumn Product;
-        private DataGridViewTextBoxColumn Plus;
+        private DataGridViewButtonColumn Plus;
         private DataGridViewTextBoxColumn Quantities;
-        private DataGridViewTextBoxColumn Minus;
+        private DataGridViewButtonColumn Minus;
         private DataGridViewTextBoxColumn PricePer1;
         private DataGridViewTextBoxColumn Price;
-        private DataGridViewTextBoxColumn Remove;
+        private DataGridViewButtonColumn Remove;
     }
 }

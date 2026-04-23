@@ -33,7 +33,7 @@ namespace SupermarketWinFormsApp1
             listOfProducts.SelectedItem = searchObject.Keys.ToArray()[random.Next(0, searchObject.Keys.Count)];
             listOfProducts.SelectedValueChanged += ChangeItem;
         }
-       
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,11 +59,12 @@ namespace SupermarketWinFormsApp1
             }
             if (check == false)
             {
-                dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, 0, quantity, 0, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity, button2_Click);
+                //dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, Plus.Text, quantity, Minus.Text, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity, Remove.Text);
+                MessageBox.Show($"You selected: {Plus.Text.GetType()}");
                 textBox3.Text = cart.CalculationSum().ToString();
 
             }
-         
+
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,7 +116,10 @@ namespace SupermarketWinFormsApp1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                dataGridView1.Rows.RemoveAt(e.ColumnIndex);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -141,7 +145,12 @@ namespace SupermarketWinFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             //dataGridView1.Rows.RemoveAt();
-                //(searchObject[listOfProducts.SelectedItem.ToString()].title, 0, quantity, 0, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+            //(searchObject[listOfProducts.SelectedItem.ToString()].title, 0, quantity, 0, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
+
+        }
+
+        private void cartBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
 
         }
     }
