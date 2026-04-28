@@ -50,7 +50,7 @@ namespace SupermarketWinFormsApp1
 
                 if (item.Cells[0].Value == listOfProducts.SelectedItem)
                 {
-                    double allQuantity = quantity + int.Parse(item.Cells[1].Value.ToString());
+                    double allQuantity = quantity + int.Parse(item.Cells[2].Value.ToString());
                     item.Cells[2].Value = allQuantity;
                     item.Cells[5].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
                     check = true;
@@ -59,8 +59,16 @@ namespace SupermarketWinFormsApp1
             }
             if (check == false)
             {
-                //dataGridView1.Rows.Add(searchObject[listOfProducts.SelectedItem.ToString()].title, Plus.Text, quantity, Minus.Text, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity, Remove.Text);
-                MessageBox.Show($"You selected: {Plus.Text.GetType()}");
+                dataGridView1.Rows.Add(
+                    searchObject[listOfProducts.SelectedItem.ToString()].title,
+                    Plus.UseColumnTextForButtonValue,
+                    quantity,
+                    Minus.UseColumnTextForButtonValue, 
+                    searchObject[listOfProducts.SelectedItem.ToString()].price, 
+                    searchObject[listOfProducts.SelectedItem.ToString()].price * quantity, 
+                    Remove.UseColumnTextForButtonValue
+                    );
+               // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
                 textBox3.Text = cart.CalculationSum().ToString();
 
             }

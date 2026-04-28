@@ -12,13 +12,15 @@ namespace ConsoleAppOnlineShop
         public string title;
         public string description;
         public double price;
+        public double quantity;
 
-        public Product(string id, string title, string description, double price)
+        public Product(string id, string title, string description, double price, double quantity = 1)
         {
             this.id = id;
             this.title = title;
             this.description = description;
             this.price = price;
+            this.quantity = quantity;
         }
     }
 }
