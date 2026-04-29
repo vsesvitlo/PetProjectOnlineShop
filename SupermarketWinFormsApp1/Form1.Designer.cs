@@ -39,6 +39,7 @@
             button3 = new Button();
             button4 = new Button();
             dataGridView1 = new DataGridView();
+            productBindingSource = new BindingSource(components);
             cartBindingSource = new BindingSource(components);
             textBox1 = new TextBox();
             textBox3 = new TextBox();
@@ -52,6 +53,7 @@
             Remove = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cartBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -146,18 +148,20 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dataGridView1.ColumnHeadersHeight = 54;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Plus, Quantities, Minus, PricePer1, Price, Remove });
-            dataGridView1.DataSource = cartBindingSource;
             dataGridView1.Location = new Point(583, 34);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 30;
             dataGridView1.Size = new Size(821, 242);
             dataGridView1.TabIndex = 24;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Product);
             // 
             // cartBindingSource
             // 
@@ -205,11 +209,13 @@
             // 
             // Plus
             // 
-            Plus.HeaderText = "+";
+            Plus.HeaderText = "Plus";
             Plus.MinimumWidth = 8;
             Plus.Name = "Plus";
+            Plus.Resizable = DataGridViewTriState.True;
             Plus.SortMode = DataGridViewColumnSortMode.Automatic;
-            Plus.Width = 60;
+            Plus.Text = "+";
+            Plus.Width = 80;
             // 
             // Quantities
             // 
@@ -220,11 +226,13 @@
             // 
             // Minus
             // 
-            Minus.HeaderText = "-";
+            Minus.HeaderText = "Minus";
             Minus.MinimumWidth = 8;
             Minus.Name = "Minus";
+            Minus.Resizable = DataGridViewTriState.True;
             Minus.SortMode = DataGridViewColumnSortMode.Automatic;
-            Minus.Width = 55;
+            Minus.Text = "-";
+            Minus.Width = 96;
             // 
             // PricePer1
             // 
@@ -245,7 +253,9 @@
             Remove.HeaderText = "Remove";
             Remove.MinimumWidth = 8;
             Remove.Name = "Remove";
+            Remove.Resizable = DataGridViewTriState.True;
             Remove.SortMode = DataGridViewColumnSortMode.Automatic;
+            Remove.Text = "Remove";
             Remove.Width = 112;
             // 
             // Form1
@@ -271,6 +281,7 @@
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)cartBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -292,6 +303,7 @@
         private TextBox textBox1;
         private TextBox textBox3;
         private Label label1;
+        private BindingSource productBindingSource;
         private DataGridViewTextBoxColumn Product;
         private DataGridViewButtonColumn Plus;
         private DataGridViewTextBoxColumn Quantities;
