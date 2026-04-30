@@ -64,11 +64,11 @@ namespace SupermarketWinFormsApp1
                     Plus.Text,
                     quantity,
                     Minus.Text,
-                    searchObject[listOfProducts.SelectedItem.ToString()].price, 
+                    searchObject[listOfProducts.SelectedItem.ToString()].price,
                     searchObject[listOfProducts.SelectedItem.ToString()].price * quantity,
                     Remove.Text
                     );
-               // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
+                // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
                 textBox3.Text = cart.CalculationSum().ToString();
 
             }
@@ -84,6 +84,8 @@ namespace SupermarketWinFormsApp1
                 textBox6.Text = searchObject[selectedValue].title;
                 richTextBox1.Text = searchObject[selectedValue].description;
                 textBox2.Text = searchObject[selectedValue].price.ToString();
+                textBox4.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
+
                 //MessageBox.Show($"You selected: {selectedValue}");
             }
 
@@ -107,28 +109,39 @@ namespace SupermarketWinFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
             // +
-            if(quantity < productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]))
+            if (quantity < productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]))
             {
                 quantity += 1;
                 label1.Text = quantity.ToString();
             }
             else
+            //if (quantity == productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]))
+            {
+                MessageBox.Show("It is all that we have!");
+
+            }
+            /*else
             {
                 MessageBox.Show("Please, enter the lower quantity.");
                 quantity = (int)(productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]));
                 label1.Text = quantity.ToString();
-            }
-               
+            }*/
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             //-
 
-            if (quantity > 0)
+            if (quantity > 1)
             {
                 quantity -= 1;
                 label1.Text = quantity.ToString();
+            }
+            else
+            {
+                MessageBox.Show("The quantity of the product can not be less than 1");
             }
         }
 
@@ -138,14 +151,19 @@ namespace SupermarketWinFormsApp1
             {
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
             }
-            else if(dataGridView1.Columns[e.ColumnIndex].Name == "Plus")
-             {
-               // MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+            else if (dataGridView1.Columns[e.ColumnIndex].Name == "Plus")
+            {
+                // MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                 double reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
-                reverse += 1;
-                dataGridView1.Rows[e.RowIndex].Cells[2].Value = reverse;
+                //reverse += 1;
+                if (productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]) > 0)
+                {
+                    reverse += 1;
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = reverse;
+                    productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], 1);
 
-             }
+                }
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -178,6 +196,11 @@ namespace SupermarketWinFormsApp1
         private void cartBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+       
         }
     }
 }

@@ -39,11 +39,6 @@
             button3 = new Button();
             button4 = new Button();
             dataGridView1 = new DataGridView();
-            productBindingSource = new BindingSource(components);
-            cartBindingSource = new BindingSource(components);
-            textBox1 = new TextBox();
-            textBox3 = new TextBox();
-            label1 = new Label();
             Product = new DataGridViewTextBoxColumn();
             Plus = new DataGridViewButtonColumn();
             Quantities = new DataGridViewTextBoxColumn();
@@ -51,6 +46,12 @@
             PricePer1 = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             Remove = new DataGridViewButtonColumn();
+            productBindingSource = new BindingSource(components);
+            cartBindingSource = new BindingSource(components);
+            textBox1 = new TextBox();
+            textBox3 = new TextBox();
+            label1 = new Label();
+            textBox4 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
@@ -134,7 +135,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(289, 281);
+            button4.Location = new Point(298, 282);
             button4.Name = "button4";
             button4.Size = new Size(45, 31);
             button4.TabIndex = 23;
@@ -152,53 +153,13 @@
             dataGridView1.ColumnHeadersHeight = 54;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Product, Plus, Quantities, Minus, PricePer1, Price, Remove });
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.Location = new Point(583, 34);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 30;
             dataGridView1.Size = new Size(821, 242);
             dataGridView1.TabIndex = 24;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Product);
-            // 
-            // cartBindingSource
-            // 
-            cartBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Cart);
-            cartBindingSource.CurrentChanged += cartBindingSource_CurrentChanged;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(608, 314);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(306, 31);
-            textBox1.TabIndex = 25;
-            textBox1.Text = "Total: ";
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(1107, 314);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(160, 31);
-            textBox3.TabIndex = 26;
-            textBox3.Text = "0 czk";
-            textBox3.TextChanged += textBox3_TextChanged;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.ControlLightLight;
-            label1.BorderStyle = BorderStyle.FixedSingle;
-            label1.Location = new Point(253, 283);
-            label1.Margin = new Padding(0);
-            label1.Name = "label1";
-            label1.Padding = new Padding(2);
-            label1.Size = new Size(28, 31);
-            label1.TabIndex = 27;
-            label1.Text = "1";
-            label1.Click += label1_Click;
             // 
             // Product
             // 
@@ -258,11 +219,64 @@
             Remove.Text = "Remove";
             Remove.Width = 112;
             // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Product);
+            // 
+            // cartBindingSource
+            // 
+            cartBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Cart);
+            cartBindingSource.CurrentChanged += cartBindingSource_CurrentChanged;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(608, 314);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(306, 31);
+            textBox1.TabIndex = 25;
+            textBox1.Text = "Total: ";
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(1107, 314);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(160, 31);
+            textBox3.TabIndex = 26;
+            textBox3.Text = "0 czk";
+            textBox3.TextChanged += textBox3_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.ControlLightLight;
+            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
+            label1.Location = new Point(257, 283);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Padding = new Padding(2);
+            label1.Size = new Size(28, 31);
+            label1.TabIndex = 27;
+            label1.Text = "1";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += label1_Click;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(426, 142);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(134, 31);
+            textBox4.TabIndex = 28;
+            textBox4.Text = "Quantity, store";
+            textBox4.TextChanged += textBox4_TextChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1457, 554);
+            Controls.Add(textBox4);
             Controls.Add(label1);
             Controls.Add(textBox3);
             Controls.Add(textBox1);
@@ -311,5 +325,6 @@
         private DataGridViewTextBoxColumn PricePer1;
         private DataGridViewTextBoxColumn Price;
         private DataGridViewButtonColumn Remove;
+        private TextBox textBox4;
     }
 }
