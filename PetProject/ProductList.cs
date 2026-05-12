@@ -29,6 +29,10 @@ namespace ConsoleAppOnlineShop
         {
             productData[product] -= quantity;
         }
+        public void AddProductQuantity(Product product, int quantity)
+        {
+            productData[product] += quantity;
+        }
         //add method scheme
         public double ShowQuantity(Product product)
         {

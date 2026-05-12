@@ -1,5 +1,6 @@
 using ConsoleAppOnlineShop;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -38,38 +39,49 @@ namespace SupermarketWinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
-            FinalCart.Items.Add(listOfProducts.SelectedItem.ToString());
-            //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
-            //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
-            productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
-            //MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
-            bool check = false;
-            foreach (DataGridViewRow item in dataGridView1.Rows)
+            if (productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]) > 0)
             {
-
-                if (item.Cells[0].Value == listOfProducts.SelectedItem)
+                cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
+                FinalCart.Items.Add(listOfProducts.SelectedItem.ToString());
+                //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
+                //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
+                productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
+                //MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
+                bool check = false;
+                foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    double allQuantity = quantity + int.Parse(item.Cells[2].Value.ToString());
-                    item.Cells[2].Value = allQuantity;
-                    item.Cells[5].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
-                    check = true;
-                    textBox3.Text = cart.CalculationSum().ToString();
+
+                    if (item.Cells[0].Value == listOfProducts.SelectedItem)
+                    {
+                        double allQuantity = quantity + int.Parse(item.Cells[2].Value.ToString());
+                        item.Cells[2].Value = allQuantity;
+                        item.Cells[5].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
+                        check = true;
+                        textBox3.Text = cart.CalculationSum().ToString();
+                    }
                 }
+                if (check == false)
+                {
+                    dataGridView1.Rows.Add(
+                        searchObject[listOfProducts.SelectedItem.ToString()].title,
+                        Plus.Text,
+                        quantity,
+                        Minus.Text,
+                        searchObject[listOfProducts.SelectedItem.ToString()].price,
+                        searchObject[listOfProducts.SelectedItem.ToString()].price * quantity,
+                        Remove.Text
+                        );
+                    // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
+                    textBox3.Text = cart.CalculationSum().ToString();
+
+                }
+                textBox4.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
+                quantity = 1;
+                label1.Text = quantity.ToString();
             }
-            if (check == false)
+            else
             {
-                dataGridView1.Rows.Add(
-                    searchObject[listOfProducts.SelectedItem.ToString()].title,
-                    Plus.Text,
-                    quantity,
-                    Minus.Text,
-                    searchObject[listOfProducts.SelectedItem.ToString()].price,
-                    searchObject[listOfProducts.SelectedItem.ToString()].price * quantity,
-                    Remove.Text
-                    );
-                // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
-                textBox3.Text = cart.CalculationSum().ToString();
+                MessageBox.Show("It is all that we have!");
 
             }
 
@@ -149,7 +161,12 @@ namespace SupermarketWinFormsApp1
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Remove")
             {
+   
+                int reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+                productList.AddProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], reverse);
+
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
+                
             }
             else if (dataGridView1.Columns[e.ColumnIndex].Name == "Plus")
             {
@@ -163,7 +180,26 @@ namespace SupermarketWinFormsApp1
                     productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], 1);
 
                 }
+                else
+                {
+                    MessageBox.Show("It is all that we have!");
+                }
             }
+            else if (dataGridView1.Columns[e.ColumnIndex].Name == "Minus")
+            {
+              
+                double reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+                if (productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]) > 0)
+                {
+                    reverse -= 1;
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = reverse;
+                    productList.AddProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], 1);
+
+                }
+            }
+            textBox4.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
+
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
