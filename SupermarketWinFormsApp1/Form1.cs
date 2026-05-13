@@ -57,7 +57,7 @@ namespace SupermarketWinFormsApp1
                         item.Cells[2].Value = allQuantity;
                         item.Cells[5].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
                         check = true;
-                        textBox3.Text = cart.CalculationSum().ToString();
+                        label3.Text = cart.CalculationSum().ToString();
                     }
                 }
                 if (check == false)
@@ -72,7 +72,7 @@ namespace SupermarketWinFormsApp1
                         Remove.Text
                         );
                     // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
-                    textBox3.Text = cart.CalculationSum().ToString();
+                    label3.Text = cart.CalculationSum().ToString();
 
                 }
                 textBox4.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
@@ -93,10 +93,10 @@ namespace SupermarketWinFormsApp1
             if (listOfProducts.SelectedItem != null)
             {
                 string selectedValue = listOfProducts.SelectedItem.ToString();
-                textBox6.Text = searchObject[selectedValue].title;
-                richTextBox1.Text = searchObject[selectedValue].description;
-                textBox2.Text = searchObject[selectedValue].price.ToString();
-                textBox4.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
+                label5.Text = searchObject[selectedValue].title;
+                label4.Text = searchObject[selectedValue].description;
+                label6.Text = searchObject[selectedValue].price.ToString() + " czk";
+                label7.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
 
                 //MessageBox.Show($"You selected: {selectedValue}");
             }
@@ -161,12 +161,12 @@ namespace SupermarketWinFormsApp1
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Remove")
             {
-   
+
                 int reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                 productList.AddProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], reverse);
 
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
-                
+
             }
             else if (dataGridView1.Columns[e.ColumnIndex].Name == "Plus")
             {
@@ -187,7 +187,7 @@ namespace SupermarketWinFormsApp1
             }
             else if (dataGridView1.Columns[e.ColumnIndex].Name == "Minus")
             {
-              
+
                 double reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                 if (productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]) > 0)
                 {
@@ -236,7 +236,17 @@ namespace SupermarketWinFormsApp1
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-       
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

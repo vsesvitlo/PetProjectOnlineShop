@@ -52,6 +52,12 @@
             textBox3 = new TextBox();
             label1 = new Label();
             textBox4 = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
@@ -60,7 +66,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(352, 281);
+            button1.Location = new Point(354, 302);
             button1.Name = "button1";
             button1.Size = new Size(91, 34);
             button1.TabIndex = 0;
@@ -70,7 +76,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(200, 42);
+            pictureBox1.Location = new Point(202, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(243, 94);
             pictureBox1.TabIndex = 1;
@@ -78,7 +84,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(373, 142);
+            textBox2.Location = new Point(367, 117);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(47, 31);
             textBox2.TabIndex = 3;
@@ -96,7 +102,7 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(210, 142);
+            textBox6.Location = new Point(204, 117);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(157, 31);
             textBox6.TabIndex = 18;
@@ -106,7 +112,7 @@
             // 
             richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Location = new Point(200, 179);
+            richTextBox1.Location = new Point(534, 399);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(327, 97);
             richTextBox1.TabIndex = 19;
@@ -117,7 +123,7 @@
             // 
             FinalCart.FormattingEnabled = true;
             FinalCart.ItemHeight = 25;
-            FinalCart.Location = new Point(198, 334);
+            FinalCart.Location = new Point(200, 399);
             FinalCart.Name = "FinalCart";
             FinalCart.Size = new Size(245, 104);
             FinalCart.TabIndex = 20;
@@ -125,7 +131,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(203, 282);
+            button3.Location = new Point(200, 305);
             button3.Name = "button3";
             button3.Size = new Size(42, 31);
             button3.TabIndex = 22;
@@ -135,7 +141,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(298, 282);
+            button4.Location = new Point(301, 305);
             button4.Name = "button4";
             button4.Size = new Size(45, 31);
             button4.TabIndex = 23;
@@ -253,7 +259,7 @@
             label1.BackColor = SystemColors.ControlLightLight;
             label1.BorderStyle = BorderStyle.FixedSingle;
             label1.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            label1.Location = new Point(257, 283);
+            label1.Location = new Point(254, 305);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Padding = new Padding(2);
@@ -265,18 +271,80 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(426, 142);
+            textBox4.Location = new Point(420, 117);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(134, 31);
             textBox4.TabIndex = 28;
             textBox4.Text = "Quantity, store";
             textBox4.TextChanged += textBox4_TextChanged;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(608, 364);
+            label2.Name = "label2";
+            label2.Size = new Size(53, 25);
+            label2.TabIndex = 29;
+            label2.Text = "Total:";
+            label2.Click += label2_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1103, 364);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 25);
+            label3.TabIndex = 30;
+            label3.Text = "0 czk";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(206, 187);
+            label4.Name = "label4";
+            label4.Size = new Size(59, 25);
+            label4.TabIndex = 31;
+            label4.Text = "label4";
+            label4.Click += label4_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(206, 151);
+            label5.Name = "label5";
+            label5.Size = new Size(44, 25);
+            label5.TabIndex = 32;
+            label5.Text = "Title";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(355, 151);
+            label6.Name = "label6";
+            label6.Size = new Size(83, 25);
+            label6.TabIndex = 33;
+            label6.Text = "Price, czk";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(444, 151);
+            label7.Name = "label7";
+            label7.Size = new Size(129, 25);
+            label7.TabIndex = 34;
+            label7.Text = "Quantity, store";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1457, 554);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(textBox4);
             Controls.Add(label1);
             Controls.Add(textBox3);
@@ -327,5 +395,11 @@
         private DataGridViewTextBoxColumn Price;
         private DataGridViewButtonColumn Remove;
         private TextBox textBox4;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
     }
 }
