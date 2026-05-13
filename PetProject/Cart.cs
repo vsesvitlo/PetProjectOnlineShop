@@ -36,6 +36,18 @@ namespace ConsoleAppOnlineShop
             }
         }
 
+        public void RemoveProduct(Product product, double quantity)
+        {
+            if (this.order.ContainsKey(product))
+            {
+                this.order[product] -= quantity;
+            }
+            else
+            {
+                order.Add(product, quantity);
+            }
+        }
+
         public double CalculationSum()
         {
             double result = 0;
