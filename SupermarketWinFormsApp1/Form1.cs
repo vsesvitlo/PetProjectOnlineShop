@@ -168,7 +168,7 @@ namespace SupermarketWinFormsApp1
 
                
 
-                cart.RemoveProduct(searchObject[dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()], reverse);
+                //cart.DecreaseProduct(searchObject[dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()], reverse);
                
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
                 label3.Text = cart.CalculationSum().ToString();
@@ -212,7 +212,7 @@ namespace SupermarketWinFormsApp1
                     reverse -= 1;
                     dataGridView1.Rows[e.RowIndex].Cells[2].Value = reverse;
                     productList.AddProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], 1);
-                    cart.RemoveProduct(searchObject[listOfProducts.SelectedItem.ToString()], 1);
+                    cart.DecreaseProduct(searchObject[listOfProducts.SelectedItem.ToString()], 1);
                     label3.Text = cart.CalculationSum().ToString();
                 }
             }
