@@ -165,11 +165,8 @@ namespace SupermarketWinFormsApp1
 
                 int reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                 productList.AddProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], reverse);
+                cart.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
 
-               
-
-                //cart.DecreaseProduct(searchObject[dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()], reverse);
-               
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
                 label3.Text = cart.CalculationSum().ToString();
             }

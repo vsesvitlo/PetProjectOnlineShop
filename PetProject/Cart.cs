@@ -49,6 +49,11 @@ namespace ConsoleAppOnlineShop
             }
         }
 
+        public void RemoveProductQuantity(Product product, int quantity)
+        {
+            order[product] -= quantity;
+        }
+
         public double CalculationSum()
         {
             double result = 0;

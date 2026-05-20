@@ -220,7 +220,7 @@
             label3.BackColor = SystemColors.ControlLightLight;
             label3.Location = new Point(1272, 291);
             label3.Name = "label3";
-            label3.Size = new Size(132, 25);
+            label3.Size = new Size(157, 25);
             label3.TabIndex = 30;
             label3.Text = "0 czk";
             // 
