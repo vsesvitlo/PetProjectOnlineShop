@@ -223,6 +223,7 @@
             label3.Size = new Size(157, 25);
             label3.TabIndex = 30;
             label3.Text = "0 czk";
+            label3.Click += label3_Click;
             // 
             // label4
             // 

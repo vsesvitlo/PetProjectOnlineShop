@@ -40,8 +40,8 @@ namespace ConsoleAppOnlineShop
         {
             if (this.order.ContainsKey(product))
             {
-                //this.order[product] -= quantity;
-                bool v = order.Remove(product);
+                this.order[product] -= quantity;
+               //bool v = order.(product);
             }
             else
             {
