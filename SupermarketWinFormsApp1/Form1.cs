@@ -1,5 +1,6 @@
 using ConsoleAppOnlineShop;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
@@ -57,7 +58,7 @@ namespace SupermarketWinFormsApp1
                         item.Cells[2].Value = allQuantity;
                         item.Cells[5].Value = allQuantity * searchObject[listOfProducts.SelectedItem.ToString()].price;
                         check = true;
-                        label3.Text = cart.CalculationSum().ToString();
+                        SetLabel3(cart.CalculationSum());
                     }
                 }
                 if (check == false)
@@ -71,9 +72,7 @@ namespace SupermarketWinFormsApp1
                         searchObject[listOfProducts.SelectedItem.ToString()].price * quantity,
                         Remove.Text
                         );
-                    // MessageBox.Show($"You selected: {Plus.Text.GetType()}");
-                    label3.Text = cart.CalculationSum().ToString();
-
+                    SetLabel3(cart.CalculationSum());
                 }
                 label7.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
                 quantity = 1;
@@ -160,28 +159,30 @@ namespace SupermarketWinFormsApp1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "Remove" || int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()) < 1)
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Remove" ||
+                (int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()) < 2 &&
+                dataGridView1.Columns[e.ColumnIndex].Name == "Minus"))//?
             {
                 int reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                 productList.AddProductQuantity(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()], reverse);
                 cart.RemoveProductQuantity(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()], reverse);
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
-                label3.Text = cart.CalculationSum().ToString();
+                SetLabel3(cart.CalculationSum());
             }
             else if (dataGridView1.Columns[e.ColumnIndex].Name == "Plus")
             {
-               
+
                 double allQuantity = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()) + 1;
                 dataGridView1.Rows[e.RowIndex].Cells[5].Value = allQuantity * int.Parse(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
                 double reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
-       
+
                 if (productList.ShowQuantity(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()]) > 0)
                 {
                     reverse += 1;
                     dataGridView1.Rows[e.RowIndex].Cells[2].Value = reverse;
                     productList.RemoveProductQuantity(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()], 1);
                     cart.AddProduct(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()], 1);
-                    label3.Text = cart.CalculationSum().ToString();
+                    SetLabel3(cart.CalculationSum());
 
                 }
                 else
@@ -190,15 +191,15 @@ namespace SupermarketWinFormsApp1
                 }
 
             }
-            else if (dataGridView1.Columns[e.ColumnIndex].Name == "Minus") { 
+            else if (dataGridView1.Columns[e.ColumnIndex].Name == "Minus") {
                 double reverse = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
-                if (int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()) >= 0)
+                if (int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()) >= 0) //?
                 {
                     reverse -= 1;
                     dataGridView1.Rows[e.RowIndex].Cells[2].Value = reverse;
                     productList.AddProductQuantity(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()], 1);
                     cart.DecreaseProduct(searchObject[dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()], 1);
-                    label3.Text = cart.CalculationSum().ToString();
+                    SetLabel3(cart.CalculationSum());
                     dataGridView1.Rows[e.RowIndex].Cells[5].Value = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()) * int.Parse(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
                 }
             }
@@ -206,7 +207,7 @@ namespace SupermarketWinFormsApp1
             label7.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {
-                 if (item.Cells[0].Value == listOfProducts.SelectedItem)
+                if (item.Cells[0].Value == listOfProducts.SelectedItem)
                 {
                     item.Cells[5].Value = int.Parse(item.Cells[2].Value.ToString())
                         * searchObject[item.Cells[0].Value.ToString()].price;
@@ -237,8 +238,6 @@ namespace SupermarketWinFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //dataGridView1.Rows.RemoveAt();
-            //(searchObject[listOfProducts.SelectedItem.ToString()].title, 0, quantity, 0, searchObject[listOfProducts.SelectedItem.ToString()].price, searchObject[listOfProducts.SelectedItem.ToString()].price * quantity);
 
         }
 
@@ -265,6 +264,11 @@ namespace SupermarketWinFormsApp1
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+        private void SetLabel3(double sum, string czk = " czk")
+        {
+            label3.Text = sum.ToString() + czk;
+        
         }
     }
 }
