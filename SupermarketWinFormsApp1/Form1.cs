@@ -19,6 +19,7 @@ namespace SupermarketWinFormsApp1
         public Form1(Dictionary<Product, double> productData)
         {
             InitializeComponent();
+           
             this.productData = productData;
             this.productList = new ProductList((productData));
             //listBox1.Items.Add(productData.Keys.ToArray()[0].title);
@@ -114,7 +115,7 @@ namespace SupermarketWinFormsApp1
                 label7.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
 
             }
-
+            LoadNewPict();
         }
         public void ChangeItem(object sender, EventArgs e)
         {
