@@ -15,7 +15,7 @@ namespace SupermarketWinFormsApp1
         int quantity;
         Client client;
         Cart cart;
-
+        
         public Form1(Dictionary<Product, double> productData)
         {
             InitializeComponent();
@@ -34,20 +34,37 @@ namespace SupermarketWinFormsApp1
             Random random = new Random();
             listOfProducts.SelectedItem = searchObject.Keys.ToArray()[random.Next(0, searchObject.Keys.Count)];
             listOfProducts.SelectedValueChanged += ChangeItem;
+            LoadNewPict();
         }
-
-
-
+        private void LoadNewPict()
+        {
+            try
+            {
+                string productName = searchObject[listOfProducts.SelectedItem.ToString()].title;
+                // You should replace the bold image
+                // in the sample below with an icon of your own choosing.
+                // Note the escape character used (@) when specifying the path.
+                //MessageBox.Show(System.Environment.CurrentDirectory);
+                pictureBox1.Image = Image.FromFile
+                (System.Environment.CurrentDirectory
+                + $@"\Images\{productName}.png");
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch
+            {
+                pictureBox1.Image = Image.FromFile
+                (System.Environment.CurrentDirectory
+                + @"\Images\Default.png");
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
+        //C:\Users\user\source\repos\PetProjectOnlineShop\SupermarketWinFormsApp1\Images
         private void button1_Click(object sender, EventArgs e)
         {
             if (productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]) > 0)
             {
                 cart.AddProduct(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
-
-                //MessageBox.Show(searchObject[listOfProducts.SelectedItem.ToString()].ToString());
-                //MessageBox.Show(productList.productData.ContainsKey(searchObject[listOfProducts.SelectedItem.ToString()]).ToString());
                 productList.RemoveProductQuantity(searchObject[listOfProducts.SelectedItem.ToString()], quantity);
-                //MessageBox.Show((productList.ShowQuantity((searchObject[listOfProducts.SelectedItem.ToString()])).ToString()));
                 bool check = false;
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
@@ -81,9 +98,8 @@ namespace SupermarketWinFormsApp1
             else
             {
                 MessageBox.Show("It is all that we have!");
-
             }
-
+            LoadNewPict();
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,7 +113,6 @@ namespace SupermarketWinFormsApp1
                 label6.Text = searchObject[selectedValue].price.ToString() + " czk";
                 label7.Text = productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]).ToString() + " items";
 
-                //MessageBox.Show($"You selected: {selectedValue}");
             }
 
         }
@@ -105,16 +120,6 @@ namespace SupermarketWinFormsApp1
         {
             quantity = 1;
             label1.Text = quantity.ToString();
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cart_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -126,19 +131,10 @@ namespace SupermarketWinFormsApp1
                 label1.Text = quantity.ToString();
             }
             else
-            //if (quantity == productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]))
             {
                 MessageBox.Show("It is all that we have!");
 
             }
-            /*else
-            {
-                MessageBox.Show("Please, enter the lower quantity.");
-                quantity = (int)(productList.ShowQuantity(searchObject[listOfProducts.SelectedItem.ToString()]));
-                label1.Text = quantity.ToString();
-            }*/
-
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -215,56 +211,12 @@ namespace SupermarketWinFormsApp1
             }
 
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void label1_Click(object sender, EventArgs e)
         {
             label1.Text = quantity.ToString();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cartBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         private void SetLabel3(double sum, string czk = " czk")
         {
             label3.Text = sum.ToString() + czk;

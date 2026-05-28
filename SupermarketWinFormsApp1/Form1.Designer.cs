@@ -119,7 +119,7 @@
             dataGridView1.Location = new Point(608, 34);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 30;
-            dataGridView1.Size = new Size(821, 242);
+            dataGridView1.Size = new Size(821, 420);
             dataGridView1.TabIndex = 24;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -188,7 +188,6 @@
             // cartBindingSource
             // 
             cartBindingSource.DataSource = typeof(ConsoleAppOnlineShop.Cart);
-            cartBindingSource.CurrentChanged += cartBindingSource_CurrentChanged;
             // 
             // label1
             // 
@@ -208,22 +207,20 @@
             // label2
             // 
             label2.BackColor = SystemColors.ControlLightLight;
-            label2.Location = new Point(608, 291);
+            label2.Location = new Point(608, 470);
             label2.Name = "label2";
-            label2.Size = new Size(658, 25);
+            label2.Size = new Size(658, 31);
             label2.TabIndex = 29;
             label2.Text = "Total:";
-            label2.Click += label2_Click;
             // 
             // label3
             // 
             label3.BackColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(1272, 291);
+            label3.Location = new Point(1272, 470);
             label3.Name = "label3";
-            label3.Size = new Size(157, 25);
+            label3.Size = new Size(157, 31);
             label3.TabIndex = 30;
             label3.Text = "0 czk";
-            label3.Click += label3_Click;
             // 
             // label4
             // 
@@ -233,7 +230,6 @@
             label4.Size = new Size(371, 109);
             label4.TabIndex = 31;
             label4.Text = "Description";
-            label4.Click += label4_Click;
             // 
             // label5
             // 
@@ -283,7 +279,6 @@
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
